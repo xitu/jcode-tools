@@ -12,7 +12,7 @@
 
 ## 使用方式
 
-可以直接通过 CDN 引入 `https://unpkg.com/@jcode/tools`
+可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools`
 
 ![](assets/jcode-tools.jpg)
 

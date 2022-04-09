@@ -1,12 +1,13 @@
 {
-  "name": "@jcode/tools",
-  "version": "0.0.1",
+  "name": "jcode-tools",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/jcode-tools.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "node build.js",
     "build": "mode=production node build.js",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
