@@ -1,0 +1,20 @@
+{
+  "name": "@jcode/tools",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/jcode-tools.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node build.js",
+    "build": "mode=production node build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.14.34",
+    "eslint": "^8.13.0",
+    "eslint-config-sprite": "^1.0.6"
+  }
+}
