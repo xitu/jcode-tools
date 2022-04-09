@@ -14,7 +14,7 @@
 
 可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools`
 
-![](assets/jcode-tools.jpg)
+<img src="assets/jcode-tools.jpg" width="480">
 
 ## 如何贡献代码
 
