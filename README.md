@@ -16,6 +16,12 @@
 
 <img src="assets/jcode-tools.jpg" width="480">
 
+## JCode精选
+
+在 Docs 文件夹下收录 JCode 精选代码。
+
+添加自己的代码到 JCode 精选，只需要编辑 data.js 文件，然后提交 PR 即可。
+
 ## 如何贡献代码
 
 Clone 本项目，`npm install` 安装依赖，然后运行 `npm run dev`。
