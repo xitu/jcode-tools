@@ -1,0 +1,173 @@
+* {
+  color: #f6f4f2;
+}
+
+html, body, main {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  display: grid;
+  grid-gap: 1px;
+  overflow: hidden;
+  grid-template: 60px 1fr/250px repeat(2,1fr);
+}
+
+main.max {
+  grid-template: 60px 1fr/0 repeat(2,1fr);
+}
+
+#sidebar {
+  font-family: Raleway,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  grid-column: 1/2;
+  grid-row: 1/-1;
+  background-color: #201e1e;
+  position: relative;
+}
+
+#sidebar header {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 20px;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  transition: all .6s ease-out;
+  text-decoration: none;
+  background-color: #201e1e;
+  border-bottom: solid 1px #000;
+}
+
+#sidebar a.banner {
+  flex-grow: 1;
+  text-align: left;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 0;
+  line-height: 60px;
+  text-decoration: none;
+}
+
+.sidebar-menu {
+  padding-top: 0;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0 0;
+  max-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-menuItem {
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 0 0 0 20px;
+  color: rgba(246,244,242,.4);
+  font-weight: 300;
+  transition: all .3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-menuItem.active {
+  opacity: 1;
+  color: #ffc730;
+  position: relative;
+}
+
+.sidebar-menuItem.active:before {
+  content: "";
+  width: 2px;
+  height: 60%;
+  background: #ffc730;
+  position: absolute;
+  left: 10px;
+  top: 20%;
+}
+
+.sidebar-menuFolder .content {
+  display: flex;
+  flex-direction: column;
+  background: #181717;
+}
+
+.sidebar-menuFolder .title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 0 0 0 20px;
+  color: rgba(246,244,242,.4);
+  font-weight: 300;
+  cursor: pointer;
+  transition: color .3s ease-out;
+  position: relative;
+}
+
+.sidebar-menuFolder .title::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: rgba(246,244,242,.4) transparent transparent;
+  border-style: solid;
+  border-width: 6px 4px 0;
+  top: 10px;
+  left: 8px;
+}
+
+.sidebar-menuFolder.folded .title:after {
+  transform: rotate(-90deg);
+}
+
+.sidebar-menuFolder.folded .content {
+  display: none;
+}
+
+#jcode {
+  grid-column: 2/-1;
+  grid-row: 1/-1;
+}
+
+.handler {
+  position: absolute;
+  width: 12px;
+  height: 40px;
+  background: rgba(0,0,0,.3);
+  left: 240px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: .5;
+  cursor: pointer;
+}
+
+.max .handler {
+  left: 0;
+}
+
+.handler:after, .handler:before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 30px;
+  top: 5px;
+  left: 3px;
+  background: hsla(0,0%,100%,.3);
+}
+
+.handler:after {
+  left: 7px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

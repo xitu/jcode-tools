@@ -10,5 +10,7 @@ module.exports = {
     'max-params': ['warn', 7],
     'import/no-anonymous-default-export': 'off',
     'no-console': 'warn',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
   },
 };
