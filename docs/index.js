@@ -72,6 +72,12 @@ menu.addEventListener('click', (evt) => {
   evt.preventDefault();
 });
 
+const sidebar = document.getElementById('sidebar');
+const sidebarMore = document.querySelector('.sidebar-more');
+sidebarMore.addEventListener('click', () => {
+  sidebar.className = sidebar.className === 'show' ? '' : 'show';
+});
+
 window.onpopstate = function (e) {
   const items = document.querySelectorAll('.sidebar-menuItem');
   items.forEach((item) => {
