@@ -24,6 +24,11 @@ main.max {
   grid-template: 60px 1fr/0 repeat(2,1fr);
 }
 
+main.max #sidebar header,
+main.max #sidebar nav {
+  display: none;
+}
+
 #sidebar {
   font-family: Raleway,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   grid-column: 1/2;
