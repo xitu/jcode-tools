@@ -5,7 +5,11 @@ let selectedItem = null;
 async function initDemos(container, collection) {
   if(!collection) {
     const url = new URL(location.href);
-    const search = url.search.slice(1);
+    let search = url.search;
+    const matched = url.search.match(/\?([_\w][_-\w]*)/);
+    if(matched) {
+      search = matched[1];
+    }
     const dataPath = search ? `./collections/${search}.docrc.js` : './docrc.js';
     try {
       const demos = (await import(dataPath)).default;
