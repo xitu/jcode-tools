@@ -3,7 +3,7 @@
 const default_dir = './docs';
 const fs = require('fs');
 const path = require('path');
-const template_dir = path.join(__dirname, 'template');
+const template_dir = path.join(__dirname, '../docs');
 
 function makeFile(dir, file, checkExists = false) {
   if(!checkExists || !fs.existsSync(path.join(dir, file))) {
