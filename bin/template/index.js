@@ -4,7 +4,9 @@ let selectedItem = null;
 
 async function initDemos(container, demos) {
   if(!demos) {
-    const dataPath = `./.${new URL(location.href).search.slice(1)}.docrc.js`;
+    let search = new URL(location.href).search.slice(1);
+    if(search) search = `.${search}`;
+    const dataPath = `./${search}.docrc.js`;
     demos = (await import(dataPath)).default;
   }
   demos.forEach((demo) => {
