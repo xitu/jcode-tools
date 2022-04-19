@@ -22,7 +22,7 @@ https://xitu.github.io/jcode-tools
 
 在 Docs 文件夹下收录 JCode 精选代码。
 
-添加自己的代码到 JCode 精选，只需要编辑 data.js 文件，然后提交 PR 即可。
+添加自己的代码到 JCode 精选，只需要编辑 .<your_collection_name>.docrc.js 文件，然后提交 PR 即可。
 
 ## 如何贡献代码
 
