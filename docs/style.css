@@ -77,6 +77,7 @@ main.max #sidebar nav {
   max-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .sidebar-menuItem {
