@@ -29,5 +29,18 @@ export default {
         {name: '3d meshes', author: 'akira-cn', id: '7088275519128469512'},
       ],
     },
+    {
+      type: 'folder',
+      folded: true,
+      name: 'd3',
+      collection: [
+        {name: 'bar graph', author: 'akira-cn', id: '7088280521330917380'},
+        {name: 'heirarchy', author: 'akira-cn', id: '7088282069649866766'},
+        {name: 'links', author: 'akira-cn', id: '7088282751161335839'},
+        {name: 'map', author: 'akira-cn', id: '7088283596309397518'},
+        {name: 'map centroid', author: 'akira-cn', id: '7088284001261060132'},
+        {name: 'github contribution', author: 'akira-cn', id: '7088286398549065768'},
+      ],
+    },
   ],
 };
