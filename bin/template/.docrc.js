@@ -1,11 +1,10 @@
 export default [
-  {name: 'Vue Sfc', author: 'akira-cn', id: '7085549818449231903'},
+  {name: 'WebGL Shader', author: 'akira-cn', id: '7086006314618322980', default: true},
   {
     type: 'folder',
-    name: 'WebGL Shaders',
+    name: 'CSS 3D',
     content: [
-      {name: 'sleepy', author: 'akira-cn', id: '7086006314618322980', default: true},
-      {name: 'noise-test', author: 'akira-cn', id: '7086002352934617102'},
+      {name: '我的地球', author: '优弧', id: '7083909291068882974'},
     ],
   },
 ];
