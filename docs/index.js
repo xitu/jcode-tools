@@ -4,12 +4,18 @@ let selectedItem = null;
 
 async function initDemos(container, collection) {
   if(!collection) {
-    const search = new URL(location.href).search.slice(1);
+    const url = new URL(location.href);
+    const search = url.search.slice(1);
     const dataPath = search ? `./collections/${search}.docrc.js` : './docrc.js';
-    const demos = (await import(dataPath)).default;
-    collection = demos.collection;
-    if(demos.name) {
-      document.getElementById('title').textContent = demos.name;
+    try {
+      const demos = (await import(dataPath)).default;
+      collection = demos.collection;
+      if(demos.name) {
+        document.getElementById('title').textContent = demos.name;
+      }
+    } catch (ex) {
+      location.replace(`//${url.host}`);
+      return;
     }
   }
   collection.forEach((demo) => {
