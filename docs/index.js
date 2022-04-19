@@ -1,4 +1,3 @@
-import defaultData from './.docrc.js';
 const sidebarMenu = document.querySelector('.sidebar-menu');
 const selectedID = location.hash.slice(2);
 let selectedItem = null;
@@ -6,12 +5,8 @@ let selectedItem = null;
 async function initDemos(container, demos) {
   if(!demos) {
     const search = new URL(location.href).search.slice(1);
-    if(search) {
-      const dataPath = `./collections/${search}.docrc.js`;
-      demos = (await import(dataPath)).default;
-    } else {
-      demos = defaultData;
-    }
+    const dataPath = search ? `./collections/${search}.docrc.js` : './docrc.js';
+    demos = (await import(dataPath)).default;
   }
   demos.forEach((demo) => {
     if(demo.type === 'folder') {

@@ -17,7 +17,7 @@ function buildDocs(dir = default_dir) {
   if(!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  ['index.html', 'style.css', 'index.js', '.docrc.js'].forEach((file) => {
+  ['index.html', 'style.css', 'index.js', 'docrc.js'].forEach((file) => {
     makeFile(dir, file, true);
   });
   console.log('Done! Enjoy jcode pen~');
