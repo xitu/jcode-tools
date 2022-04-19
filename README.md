@@ -18,7 +18,7 @@
 
 ## JCode精选
 
-https://xitu.github.io/jcode-tools
+http://collection.juejin.fun/
 
 在 Docs 文件夹下收录 JCode 精选代码。
 
