@@ -2,13 +2,17 @@ const sidebarMenu = document.querySelector('.sidebar-menu');
 const selectedID = location.hash.slice(2);
 let selectedItem = null;
 
-async function initDemos(container, demos) {
-  if(!demos) {
+async function initDemos(container, collection) {
+  if(!collection) {
     const search = new URL(location.href).search.slice(1);
     const dataPath = search ? `./collections/${search}.docrc.js` : './docrc.js';
-    demos = (await import(dataPath)).default;
+    const demos = (await import(dataPath)).default;
+    collection = demos.collection;
+    if(demos.name) {
+      document.getElementById('title').textContent = demos.name;
+    }
   }
-  demos.forEach((demo) => {
+  collection.forEach((demo) => {
     if(demo.type === 'folder') {
       const el = document.createElement('div');
       el.className = demo.folded ? 'sidebar-menuFolder folded' : 'sidebar-menuFolder';
@@ -20,7 +24,7 @@ async function initDemos(container, demos) {
       c.className = 'content';
       el.appendChild(c);
       container.appendChild(el);
-      initDemos(c, demo.content);
+      initDemos(c, demo.collection);
     } else {
       const el = document.createElement('div');
       const a = document.createElement('a');
