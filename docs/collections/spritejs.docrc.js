@@ -42,5 +42,17 @@ export default {
         {name: 'github contribution', author: 'akira-cn', id: '7088286398549065768'},
       ],
     },
+    {
+      type: 'folder',
+      folded: true,
+      name: 'partical system',
+      collection: [
+        {name: 'block', author: 'akira-cn', id: '7088613588423671822'},
+        {name: 'behavior', author: 'akira-cn', id: '7088614741643362341'},
+        {name: 'circle', author: 'akira-cn', id: '7088617322742546462'},
+        {name: 'bg particle', author: 'akira-cn', id: '7088617653157232672'},
+        {name: 'fire', author: 'akira-cn', id: '7088618367757582348'},
+      ],
+    },
   ],
 };
