@@ -54,5 +54,19 @@ export default {
         {name: 'fire', author: 'akira-cn', id: '7088618367757582348'},
       ],
     },
+    {
+      type: 'folder',
+      folded: true,
+      name: 'shader & pass',
+      collection: [
+        {name: 'conic gradient', author: 'akira-cn', id: '7088623553993506852'},
+        {name: 'custom shader', author: 'akira-cn', id: '7088624029791158286'},
+        {name: 'fill color', author: 'akira-cn', id: '7088624326429114405'},
+        {name: 'mask', author: 'akira-cn', id: '7088624584412381184'},
+        {name: 'pass', author: 'akira-cn', id: '7088624855486529569'},
+        {name: 'pass wave', author: 'akira-cn', id: '7088626022244941839'},
+        {name: 'water', author: 'akira-cn', id: '7088626797016776711'},
+      ],
+    },
   ],
 };
