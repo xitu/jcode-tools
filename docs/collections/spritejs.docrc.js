@@ -68,5 +68,18 @@ export default {
         {name: 'water', author: 'akira-cn', id: '7088626797016776711'},
       ],
     },
+    {
+      type: 'folder',
+      folded: true,
+      name: '3d',
+      collection: [
+        {name: 'basic', author: 'akira-cn', id: '7088623553993506852'},
+        {name: 'camera', author: 'akira-cn', id: '7088624029791158286'},
+        {name: 'camera2', author: 'akira-cn', id: '7088624326429114405'},
+        {name: 'cube map', author: 'akira-cn', id: '7088624584412381184'},
+        {name: 'fox', author: 'akira-cn', id: '7088624855486529569'},
+        {name: 'geo earth', author: 'akira-cn', id: '7088626022244941839'},
+      ],
+    },
   ],
 };
