@@ -10,7 +10,7 @@ async function initDemos(container, collection) {
     if(matched) {
       search = matched[1];
     }
-    const dataPath = search ? `./collections/${search}.docrc.js` : './docrc.js';
+    const dataPath = search ? `./collections/${search}.jcoderc.js` : './jcoderc.js';
     try {
       const demos = (await import(dataPath)).default;
       collection = demos.collection;
