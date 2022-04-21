@@ -1,5 +1,6 @@
 export default {
   name: 'SpriteJS DEMO',
+  url: 'https://spritejs.com',
   collection: [
     {name: 'quick start', author: 'akira-cn', id: '7088238218914562088', default: true},
     {name: 'basic sprites', author: 'akira-cn', id: '7088243748387160101'},
