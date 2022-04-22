@@ -107,5 +107,22 @@ export default {
         {name: 'wireframe', author: 'akira-cn', id: '7088893884561883169'},
       ],
     },
+    {
+      type: 'folder',
+      folded: true,
+      name: 'doc',
+      collection: [
+        {name: 'basic', author: 'akira-cn', id: '7088991310098464799'},
+        {name: 'resolution', author: 'akira-cn', id: '7088991833585369125'},
+        {name: 'resolution scale', author: 'akira-cn', id: '7088992331633786921'},
+        {name: 'anchor', author: 'akira-cn', id: '7088993915411365918'},
+        {name: 'border', author: 'akira-cn', id: '7089005442763849736'},
+        {name: 'padding', author: 'akira-cn', id: '7089254962441666591'},
+        {name: 'sprites', author: 'akira-cn', id: '7089255260681666596'},
+        {name: 'label', author: 'akira-cn', id: '7089255565955694607'},
+        {name: 'group', author: 'akira-cn', id: '7089256375351508999'},
+        {name: 'path', author: 'akira-cn', id: '7089256580633329672'},
+      ],
+    },
   ],
 };
