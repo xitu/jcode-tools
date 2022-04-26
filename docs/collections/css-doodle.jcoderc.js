@@ -12,6 +12,7 @@ export default {
         {name: 'loong', id: '7090821815798349832'},
         {name: 'fireworks', id: '7090822693640994824'},
         {name: 'smoke', id: '7090823984047980575'},
+        {name: 'fur space', id: '7090846381492928520'},
       ],
     },
   ],
