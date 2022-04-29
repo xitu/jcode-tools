@@ -2,7 +2,7 @@ export default {
   name: 'css-doodle ',
   url: 'https://css-doodle.com/',
   collection: [
-    {name: 'grid basic', id: '7090820605926178824', default: true},
+    {name: 'grid basic', id: '7091458369474527268', default: true},
     {name: 'grid bargraph', id: '7091481048390828063'},
     {name: 'colored bricks', id: '7091490625710719013'},
     {name: 'use rules', id: '7091492208854958116'},
