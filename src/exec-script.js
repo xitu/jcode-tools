@@ -19,9 +19,11 @@ document.body.querySelectorAll('script:not([data-preview])').forEach((el) => {
         }
       });
     }
-
+    if(!script.hasAttribute('async') && !script.hasAttribute('defer')) {
+      script.async = false;
+    }
+    el.remove();
     if(b) {
-      el.remove();
       parent.insertBefore(script, b);
     } else {
       parent.appendChild(script);
