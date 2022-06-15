@@ -1,1 +1,1 @@
-function sleep(e=50){return new Promise(t=>setTimeout(t,e))}window.JCode=window.JCode||{},JCode.getCustomCode=async()=>{let e;do e=document.querySelector("body>script:last-of-type"),await sleep();while(!e||!/^text\/.+/.test(e.type));return e.textContent};
+window.JCode=window.JCode||{},JCode.getCustomCode=async()=>{let e;do{if(e=document.querySelector("body>script:last-of-type"),e)return e.textContent;await new Promise(t=>setTimeout(t,50))}while(1)};
