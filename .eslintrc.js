@@ -1,6 +1,7 @@
 module.exports = {
   globals: {
     globalThis: true,
+    JCode: true,
   },
   extends: 'eslint-config-sprite',
   rules: {

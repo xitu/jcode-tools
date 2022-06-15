@@ -2,7 +2,7 @@ const {version} = require('./package.json');
 const options = {
   entryPoints: ['src/index.js'],
   outfile: 'dist/jcode-tools.js',
-  bundle: true,
+  // bundle: true,
   loader: {
     '.png': 'base64',
     '.svg': 'base64',

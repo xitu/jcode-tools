@@ -4,11 +4,15 @@
 
 这是为[码上掘金](https://code.juejin.cn/)提供的JS工具库，用它来增强码上掘金的能力和弥补它的不足。
 
-## 模块列表
+## API
 
-### 1. exec-script.js
+### 1. JCode.getCustomCode
 
-它可以解决在 Markup 编辑窗口中嵌入 `<script>` 标签，其中的代码不运行的问题。
+在自定义Script模式下，获得代码文本。
+
+```js
+const code = await JCode.getCustomCode(); 
+```
 
 ## 使用方式
 
