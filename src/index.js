@@ -10,7 +10,13 @@ JCode.getCustomCode = async () => {
   } while(1);
 };
 
-JCode.logger = (container, host = console) => {
+const _console = {
+  log: console.log,
+  warn: console.warn,
+  error: console.error,
+};
+
+JCode.logger = (container, host = _console) => {
   const el = document.createElement('div');
   el.className = 'jcode-logger';
   container.append(el);
