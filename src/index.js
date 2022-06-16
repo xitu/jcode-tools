@@ -16,7 +16,7 @@ JCode.logger = (container, host = console) => {
   container.append(el);
   const makeLogger = (type) => {
     return (...args) => {
-      console[type](...args);
+      host[type](...args);
       const msg = args.join(' ');
       const log = document.createElement('pre');
       log.className = `jcode-logger__${type}`;
