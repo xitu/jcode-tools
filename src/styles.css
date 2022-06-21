@@ -1,0 +1,72 @@
+.jcode-logger pre {
+  margin: 0;
+  padding: 0;
+}
+
+.jcode-logger__warn {
+  color: orange;
+}
+
+.jcode-logger__error {
+  color: red;
+}
+
+table.jcode-logger__table {
+  width: 100%;
+  border: solid 1px #dfe1e3;
+  border-spacing: 0;
+}
+
+.jcode-logger__table tr th {
+  font-weight: normal;
+  text-align: left;
+  background-color: #f1f3f4;
+  user-select: none;
+}
+
+.jcode-logger__table tr th:hover {
+  font-weight: normal;
+  text-align: left;
+  background-color: #d1d3d4;
+}
+
+.jcode-logger__table tr td,
+.jcode-logger__table tr th {
+  padding: 2px 6px;
+}
+
+.jcode-logger__table th {
+  border: solid 1px #dfe1e3;
+}
+
+.jcode-logger__table td:not(:last-child) {
+  border-right: solid 1px #dfe1e3;
+}
+
+.jcode-logger__table tr:nth-child(2n) {
+  background-color: #f1f3f4;
+}
+
+.jcode-logger__table .undefined {
+  color: #999;
+}
+.jcode-logger__table .null::after {
+  content: 'null';
+  color: #999;
+}
+
+.jcode-logger__table .number,
+.jcode-logger__table .boolean {
+  color: #16229f;
+}
+
+.jcode-logger__table .string,
+.jcode-logger__table .regexp,
+.jcode-logger__table .symbol {
+  color: #bb2f22;
+}
+
+.jcode-logger__table .bigint,
+.jcode-logger__table .array {
+  color: #396b2f;
+}
