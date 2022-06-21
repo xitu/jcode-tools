@@ -77,9 +77,7 @@ function buildTable(tableData, columns) {
           } else if(typeof v === 'symbol') {
             col.innerHTML = v.toString();
           } else col.innerHTML = v;
-          if(key !== '(index)') {
-            col.className = Object.prototype.toString.call(v).slice(8, -1).toLowerCase();
-          }
+          col.className = Object.prototype.toString.call(v).slice(8, -1).toLowerCase();
         }
         row.appendChild(col);
       }
@@ -134,8 +132,24 @@ JCode.logger = (container, host = _console) => {
           const index = Number(target.dataset.index);
           const rows = [...table.querySelectorAll('tr')].slice(1);
           rows.sort((a, b) => {
-            const x = a.children[index].textContent;
-            const y = b.children[index].textContent;
+            a = a.children[index];
+            b = b.children[index];
+            let x = a.textContent;
+            let y = b.textContent;
+            if(a.className === 'number') {
+              x = Number(x);
+            }
+            if(b.className === 'number') {
+              y = Number(y);
+            }
+            if(a.className === 'bigint') {
+              // eslint-disable-next-line no-undef
+              x = BigInt(x.slice(0, -1));
+            }
+            if(b.className === 'bigint') {
+              // eslint-disable-next-line no-undef
+              y = BigInt(y.slice(0, -1));
+            }
             if(x > y) return target.dataset.sort === 'asc' ? -1 : 1;
             if(x < y) return target.dataset.sort === 'asc' ? 1 : -1;
             return 0;

@@ -71,3 +71,7 @@ table.jcode-logger__table {
 .jcode-logger__table .array {
   color: #396b2f;
 }
+
+.jcode-logger__table td:first-child {
+  color: inherit;
+}
