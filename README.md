@@ -25,9 +25,11 @@ logger.log('Hello %cworld', 'color:red');
 
 ## 使用方式
 
-可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools`
+可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools` 以及对应的 css `https://unpkg.com/jcode-tools/dist/jcode-tools.css`;
 
 <img src="assets/jcode-tools.jpg" width="480">
+
+<img src="assets/jcode-tools-css.jpg" width="480">
 
 ## JCode精选
 
