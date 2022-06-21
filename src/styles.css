@@ -1,14 +1,46 @@
 .jcode-logger pre {
   margin: 0;
   padding: 0;
+  text-indent: 1rem;
 }
 
 .jcode-logger__warn {
-  color: orange;
+  background-color: #fefbe7;
 }
 
 .jcode-logger__error {
-  color: red;
+  background-color: #fcf1f0;
+}
+
+.jcode-logger__warn::before {
+  content: "!";
+  background: #ecbe41;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-align: center;
+  text-indent: 0;
+  color: white;
+  position: absolute;
+  left: 0.5rem;
+  transform: scale(0.75);
+}
+
+.jcode-logger__error::before {
+  content: "x";
+  background: #bb2f22;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-align: center;
+  text-indent: 0;
+  color: white;
+  position: absolute;
+  left: 0.5rem;
+  transform: scale(0.75);
 }
 
 table.jcode-logger__table {

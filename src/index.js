@@ -97,6 +97,43 @@ JCode.getCustomCode = async () => {
   } while(1);
 };
 
+function buildMsg(args) {
+  let firstMsg = args[0];
+  let ret = [];
+  const placeHolder = /%[cdfios]/;
+  let colors = 0;
+  for(let i = 1; i < args.length; i++) {
+    const currentMsg = args[i];
+    if(placeHolder.test(firstMsg)) {
+      firstMsg = firstMsg.replace(placeHolder, (f) => {
+        if(f === '%c') {
+          const ret = `${colors ? '</span>' : ''}<span style="${currentMsg}">`;
+          colors++;
+          return ret;
+        }
+        if(f === '%d' || f === '%i') {
+          return parseInt(currentMsg, 10);
+        }
+        if(f === '%f') {
+          return parseFloat(currentMsg);
+        }
+        if(f === '%s') {
+          return currentMsg.toString();
+        }
+        if(f === '%o') {
+          return JSON.stringify(currentMsg);
+        }
+      });
+    } else {
+      ret.push(...args.slice(i));
+      break;
+    }
+  }
+  ret = [firstMsg, ...ret];
+  if(colors) ret.push('</span>');
+  return ret;
+}
+
 const _console = {
   log: console.log,
   warn: console.warn,
@@ -111,10 +148,11 @@ JCode.logger = (container, host = _console) => {
   const makeLogger = (type) => {
     return (...args) => {
       if(host) host[type](...args);
+      args = buildMsg(args);
       const msg = args.join(' ');
       const log = document.createElement('pre');
       log.className = `jcode-logger__${type}`;
-      log.textContent = msg;
+      log.innerHTML = msg;
       el.appendChild(log);
     };
   };
