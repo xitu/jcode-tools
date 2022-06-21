@@ -14,6 +14,15 @@
 const code = await JCode.getCustomCode(); 
 ```
 
+### 2. JCode.logger
+
+将控制台内容输出到页面上。
+
+```js
+const logger = JCode.logger(container);
+logger.log('Hello %cworld', 'color:red');
+```
+
 ## 使用方式
 
 可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools`
