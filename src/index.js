@@ -30,8 +30,7 @@ function createTableData(data) {
       } else {
         // eslint-disable-next-line no-restricted-syntax
         for(const [_k, _v] of Object.entries(v)) {
-          tableData[_k] = tableData[_k] || [];
-          tableData[_k][i] = _v;
+          setValue(tableData, _k, _v, i);
         }
       }
       i++;
