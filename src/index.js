@@ -17,13 +17,14 @@ function createTableData(data) {
   const tableData = {};
   if(data) {
     let i = 0;
+    const numbericKeys = Object.keys(data).every(k => k === Number(k).toString());
     // eslint-disable-next-line no-restricted-syntax
     for(const [k, v] of Object.entries(data)) {
       if(typeof v === 'function') {
         // eslint-disable-next-line no-continue
         continue; // skip
       }
-      setValue(tableData, '(index)', k, i);
+      setValue(tableData, '(index)', numbericKeys ? Number(k) : k, i);
       if(typeof v !== 'object' || v instanceof RegExp) {
         setValue(tableData, 'Value', v, i);
       } else {
