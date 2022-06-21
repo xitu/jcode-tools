@@ -87,16 +87,6 @@ function buildTable(tableData, columns) {
   }
 }
 
-JCode.getCustomCode = async () => {
-  let el;
-  do {
-    el = document.querySelector('body>script:last-of-type');
-    if(el && /^text\/.*/.test(el.type)) return el.textContent;
-    // eslint-disable-next-line no-await-in-loop
-    await new Promise(resolve => setTimeout(resolve, 50));
-  } while(1);
-};
-
 function buildMsg(args) {
   let firstMsg = args[0];
   let ret = [];
@@ -202,4 +192,14 @@ JCode.logger = (container, host = _console) => {
       el.appendChild(table);
     },
   };
+};
+
+JCode.getCustomCode = async () => {
+  let el;
+  do {
+    el = document.querySelector('body>script:last-of-type');
+    if(el && /^text\/.*/.test(el.type)) return el.textContent;
+    // eslint-disable-next-line no-await-in-loop
+    await new Promise(resolve => setTimeout(resolve, 50));
+  } while(1);
 };
