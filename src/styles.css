@@ -15,6 +15,7 @@ table.jcode-logger__table {
   width: 100%;
   border: solid 1px #dfe1e3;
   border-spacing: 0;
+  margin: 1.2rem 0;
 }
 
 .jcode-logger__table tr th {
