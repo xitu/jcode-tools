@@ -25,7 +25,7 @@ function createTableData(data) {
         continue; // skip
       }
       setValue(tableData, '(index)', numbericKeys ? Number(k) : k, i);
-      if(typeof v !== 'object' || v instanceof RegExp) {
+      if(v == null || typeof v !== 'object' || v instanceof RegExp) {
         setValue(tableData, 'Value', v, i);
       } else {
         // eslint-disable-next-line no-restricted-syntax
