@@ -86,13 +86,20 @@ function buildTable(tableData, columns) {
   }
 }
 
+function parseMsg(msg) {
+  if(Object.prototype.toString.call(msg) === '[object Object]') {
+    return JSON.stringify(msg);
+  }
+  return msg;
+}
+
 function buildMsg(args) {
-  let firstMsg = args[0];
+  let firstMsg = parseMsg(args[0]);
   let ret = [];
   const placeHolder = /%[cdfios]/;
   let colors = 0;
   for(let i = 1; i < args.length; i++) {
-    const currentMsg = args[i];
+    const currentMsg = parseMsg(args[i]);
     if(placeHolder.test(firstMsg)) {
       firstMsg = firstMsg.replace(placeHolder, (f) => {
         if(f === '%c') {
@@ -114,7 +121,7 @@ function buildMsg(args) {
         }
       });
     } else {
-      ret.push(...args.slice(i));
+      ret.push(...args.slice(i).map(parseMsg));
       break;
     }
   }
