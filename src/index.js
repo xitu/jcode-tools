@@ -70,14 +70,14 @@ function buildTable(tableData, columns) {
           }
           if(Array.isArray(v)) {
             if(v.length > 3) {
-              col.innerHTML = `${v.slice(0, 3)}... (total: ${v.length})`;
+              col.textContent = `${v.slice(0, 3)}... (total: ${v.length})`;
             }
           } else if(typeof v === 'bigint') {
-            col.innerHTML = `${v}n`;
+            col.textContent = `${v}n`;
           } else if(typeof v === 'symbol') {
-            col.innerHTML = v.toString();
-          } else col.innerHTML = v;
-          col.className = Object.prototype.toString.call(v).slice(8, -1).toLowerCase();
+            col.textContent = v.toString();
+          } else col.textContent = v;
+          col.className = getName(v).toLowerCase();
         }
         row.appendChild(col);
       }
@@ -130,34 +130,181 @@ function buildMsg(args) {
   return ret;
 }
 
+function getName(obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1);
+}
+
+function buildDir(obj) {
+  const list = document.createElement('ul');
+  list.className = 'jcode-logger__dir';
+  const name = getName(obj);
+  const header = document.createElement('div');
+  header.textContent = obj instanceof HTMLElement ? obj.tagName.toLowerCase() : name;
+  header.addEventListener('click', () => {
+    header.classList.toggle('expand');
+  });
+  list.appendChild(header);
+  const kv = [];
+  // eslint-disable-next-line no-restricted-syntax
+  for(const k in obj) {
+    if(typeof obj[k] !== 'function') {
+      kv.push([k, obj[k]]);
+    }
+  }
+  kv.sort((a, b) => {
+    if(a[0] > b[0]) return 1;
+    if(a[0] < b[0]) return -1;
+    return 0;
+  });
+  for(let i = 0; i < kv.length; i++) {
+    let [k, v] = kv[i];
+    if(typeof v === 'string') {
+      v = `"${v}"`;
+    }
+    const li = document.createElement('li');
+    const key = document.createElement('em');
+    key.textContent = k;
+    li.appendChild(key);
+    const value = document.createElement('span');
+    if(Array.isArray(v) && v.length <= 0) {
+      value.textContent = 'Array(0)';
+    } else if(v instanceof NodeList) {
+      value.textContent = `NodeList(${v.length})`;
+    } else if(v instanceof HTMLCollection) {
+      value.textContent = `HTMLCollection(${v.length})`;
+    } else if(v instanceof DOMTokenList) {
+      value.textContent = `DOMTokenList(${v.length})`;
+    } else if(v instanceof HTMLElement) {
+      value.textContent = `${v.tagName.toLowerCase()}${v.id ? `#${v.id}` : ''}`;
+    } else {
+      value.textContent = v;
+    }
+    value.className = getName(v).toLowerCase();
+    li.appendChild(value);
+    list.appendChild(li);
+  }
+  return list;
+}
+
 const _console = {
   log: console.log,
+  info: console.info,
   warn: console.warn,
   error: console.error,
+  dir: console.dir,
   table: console.table,
+  group: console.group,
+  groupCollapsed: console.groupCollapsed,
+  groupEnd: console.groupEnd,
+  count: console.count,
+  countReset: console.countReset,
+  time: console.time,
+  timeEnd: console.timeEnd,
 };
 
 JCode.logger = (container, host = _console) => {
-  const el = document.createElement('div');
+  let el = document.createElement('div');
   el.className = 'jcode-logger';
   container.append(el);
+
+  const log = (msg, type = 'info') => {
+    const log = document.createElement('pre');
+    log.className = `jcode-logger__${type}`;
+    log.innerHTML = msg;
+    el.appendChild(log);
+  };
+
   const makeLogger = (type) => {
     return (...args) => {
       if(host) host[type](...args);
       args = buildMsg(args);
       const msg = args.join(' ');
-      const log = document.createElement('pre');
-      log.className = `jcode-logger__${type}`;
-      log.innerHTML = msg;
-      el.appendChild(log);
+      log(msg, type);
     };
   };
+
+  const groupStack = [];
+  const group = (name, collapsed = false) => {
+    const g = document.createElement('div');
+    g.className = 'jcode-logger__group';
+    el.appendChild(g);
+    const header = document.createElement('div');
+    header.textContent = name;
+    if(!collapsed) header.className = 'expand';
+    g.appendChild(header);
+    header.addEventListener('click', () => {
+      header.classList.toggle('expand');
+    });
+    groupStack.push(el);
+    el = g;
+  };
+
+  const counter = {};
+  const timer = {};
+
+  if(host.groupEnd) host.groupEnd();
+
   return {
     log: makeLogger('log'),
+    info: makeLogger('info'),
     warn: makeLogger('warn'),
     error: makeLogger('error'),
+    group: (name) => {
+      host.group(name);
+      group(name);
+    },
+    groupCollapsed: (name) => {
+      host.groupCollapsed(name);
+      group(name, true);
+    },
+    groupEnd: () => {
+      host.groupEnd();
+      if(groupStack.length > 0) {
+        el = groupStack.pop();
+      }
+    },
+    count: (msg = 'default') => {
+      if(host) host.count(msg);
+      msg = msg.toString();
+      counter[msg] = counter[msg] || 0;
+      counter[msg]++;
+      log(`${msg}: ${counter[msg]}`);
+    },
+    time: (msg = 'default') => {
+      if(host) host.time(msg);
+      msg = msg.toString();
+      if(!(msg in timer)) {
+        timer[msg] = performance.now();
+      } else {
+        log(`Timer '${msg}' already exists`, 'warn');
+      }
+    },
+    countReset: (msg = 'default') => {
+      if(host) host.countReset(msg);
+      msg = msg.toString();
+      if(msg in counter) {
+        delete counter[msg];
+      } else {
+        log(`Count for '${msg}' does not exist`, 'warn');
+      }
+    },
+    timeEnd: (msg = 'default') => {
+      if(host) host.timeEnd(msg);
+      msg = msg.toString();
+      if(msg in timer) {
+        log(`${msg}: ${performance.now() - timer[msg]} ms`);
+        delete timer[msg];
+      } else {
+        log(`Timer '${msg}' does not exist`, 'warn');
+      }
+    },
+    dir: (data) => {
+      if(host) host.dir(data);
+      const list = buildDir(data);
+      el.appendChild(list);
+    },
     table: (data, columns) => {
-      host.table(data, columns);
+      if(host) host.table(data, columns);
       const d = createTableData(data);
       const table = buildTable(d, columns);
       table.addEventListener('click', (e) => {
