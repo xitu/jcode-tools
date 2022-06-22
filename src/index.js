@@ -200,6 +200,7 @@ const _console = {
   countReset: console.countReset,
   time: console.time,
   timeEnd: console.timeEnd,
+  assert: console.assert,
 };
 
 JCode.logger = (container, host = _console) => {
@@ -249,6 +250,11 @@ JCode.logger = (container, host = _console) => {
     info: makeLogger('info'),
     warn: makeLogger('warn'),
     error: makeLogger('error'),
+    assert: (cond, msg) => {
+      if(!cond) {
+        log(msg, 'error');
+      }
+    },
     group: (name) => {
       host.group(name);
       group(name);
