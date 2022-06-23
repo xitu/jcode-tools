@@ -201,6 +201,7 @@ const _console = {
   time: console.time,
   timeEnd: console.timeEnd,
   assert: console.assert,
+  clear: console.clear,
 };
 
 JCode.logger = (container, host = _console) => {
@@ -250,21 +251,31 @@ JCode.logger = (container, host = _console) => {
     info: makeLogger('info'),
     warn: makeLogger('warn'),
     error: makeLogger('error'),
-    assert: (cond, msg) => {
+    assert: (cond, ...rest) => {
+      if(host) host.assert(cond, ...rest);
       if(!cond) {
-        log(msg, 'error');
+        const msg = buildMsg(rest).join(' ');
+        log(`Assertion failed: ${msg}`, 'error');
       }
     },
+    clear: () => {
+      if(host) host.clear();
+      if(groupStack.length > 0) {
+        el = groupStack[0];
+        groupStack.length = 0;
+      }
+      el.innerHTML = '';
+    },
     group: (name) => {
-      host.group(name);
+      if(host) host.group(name);
       group(name);
     },
     groupCollapsed: (name) => {
-      host.groupCollapsed(name);
+      if(host) host.groupCollapsed(name);
       group(name, true);
     },
     groupEnd: () => {
-      host.groupEnd();
+      if(host) host.groupEnd();
       if(groupStack.length > 0) {
         el = groupStack.pop();
       }
