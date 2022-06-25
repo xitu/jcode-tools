@@ -117,7 +117,7 @@ table.jcode-logger__table {
 }
 
 .jcode-logger__dir li {
-  text-indent: 1rem;
+  margin-left: 1rem;
   font-size: 12px;
 }
 

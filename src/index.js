@@ -134,7 +134,7 @@ function getName(obj) {
   return Object.prototype.toString.call(obj).slice(8, -1);
 }
 
-function buildDir(obj) {
+function buildDir(obj, level = 0) {
   const list = document.createElement('ul');
   list.className = 'jcode-logger__dir';
   const name = getName(obj);
@@ -151,6 +151,9 @@ function buildDir(obj) {
       kv.push([k, obj[k]]);
     }
   }
+  if(Array.isArray(obj)) {
+    kv.push(['length', obj.length]);
+  }
   kv.sort((a, b) => {
     if(a[0] > b[0]) return 1;
     if(a[0] < b[0]) return -1;
@@ -164,8 +167,8 @@ function buildDir(obj) {
     const li = document.createElement('li');
     const key = document.createElement('em');
     key.textContent = k;
-    li.appendChild(key);
     const value = document.createElement('span');
+    value.className = getName(v).toLowerCase();
     if(Array.isArray(v) && v.length <= 0) {
       value.textContent = 'Array(0)';
     } else if(v instanceof NodeList) {
@@ -179,8 +182,16 @@ function buildDir(obj) {
     } else {
       value.textContent = v;
     }
-    value.className = getName(v).toLowerCase();
-    li.appendChild(value);
+    if(level < 2 && v && typeof v === 'object' && !(v instanceof Window)) {
+      const _list = buildDir(v, level + 1);
+      _list.children[0].innerHTML = '';
+      _list.children[0].appendChild(key);
+      _list.children[0].appendChild(value);
+      li.appendChild(_list);
+    } else {
+      li.appendChild(key);
+      li.appendChild(value);
+    }
     list.appendChild(li);
   }
   return list;
