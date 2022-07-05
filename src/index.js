@@ -255,7 +255,7 @@ JCode.logger = (container, host = _console) => {
   const counter = {};
   const timer = {};
 
-  if(host.groupEnd) host.groupEnd();
+  // if(host && host.groupEnd) host.groupEnd();
 
   return {
     log: makeLogger('log'),
