@@ -17,6 +17,12 @@ const options = {
 
 if(process.env.mode === 'production') {
   require('esbuild').buildSync({minify: true, ...options});
+  require('esbuild').buildSync({
+    ...options,
+    format: 'esm',
+    entryPoints: ['src/jcode-tools.js'],
+    outfile: 'dist/jcode-tools.esm.js',
+  });
 } else {
   require('esbuild').serve({
     servedir: '.',
