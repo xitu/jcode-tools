@@ -1,7 +1,7 @@
 .jcode-logger pre {
   margin: 0;
   padding: 0;
-  text-indent: 1rem;
+  padding-left: 1rem;
   overflow-x: scroll;
 }
 
@@ -22,7 +22,6 @@
   height: 1rem;
   display: inline-block;
   text-align: center;
-  text-indent: 0;
   color: white;
   position: relative;
   left: -0.5rem;
@@ -37,7 +36,6 @@
   height: 1rem;
   display: inline-block;
   text-align: center;
-  text-indent: 0;
   color: white;
   position: relative;
   left: -0.5rem;
