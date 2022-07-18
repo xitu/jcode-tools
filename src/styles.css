@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   text-indent: 1rem;
+  overflow-x: scroll;
 }
 
 .jcode-logger__warn {
