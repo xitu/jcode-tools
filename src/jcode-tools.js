@@ -1,3 +1,6 @@
+import {getCustomCode} from './get-custom-code';
+import {CodeXClient} from './codex-client';
+
 // eslint-disable-next-line no-undef
 if(typeof BigInt === 'function' && !BigInt.prototype.toJSON) {
   // eslint-disable-next-line no-undef
@@ -373,15 +376,7 @@ export const logger = (container, host = _console) => {
   };
 };
 
-export const getCustomCode = async () => {
-  let el;
-  do {
-    el = document.querySelector('body>script:last-of-type');
-    if(el && /^text\/.*/.test(el.type)) return el.textContent;
-    // eslint-disable-next-line no-await-in-loop
-    await new Promise(resolve => setTimeout(resolve, 50));
-  } while(1);
-};
+export {getCustomCode};
 
 function getBlobURL(jsCode) {
   const blob = new Blob([jsCode], {type: 'text/javascript'});
@@ -393,3 +388,5 @@ export const getURL = async () => {
   const code = await getCustomCode();
   return getBlobURL(code);
 };
+
+export {CodeXClient};

@@ -1,3 +1,102 @@
+// src/get-custom-code.js
+var getCustomCode = async () => {
+  let el;
+  do {
+    el = document.querySelector("body>script:last-of-type");
+    if (el && /^text\/.*/.test(el.type))
+      return el.textContent;
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  } while (1);
+};
+
+// src/codex-client.js
+function codeXWS(url) {
+  return new Promise((resolve, reject) => {
+    try {
+      const socket = new WebSocket(url);
+      socket.addEventListener("message", (event) => {
+        const data = JSON.parse(event.data);
+        if (data.type === "init") {
+          socket.clientID = data.message;
+        }
+        resolve(socket);
+      });
+    } catch (ex) {
+      reject(ex.message);
+    }
+  });
+}
+function defer() {
+  let resolve, reject;
+  const promise = new Promise((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return {
+    resolve,
+    reject,
+    promise
+  };
+}
+var CodeXClient = class {
+  constructor(url, wsURL) {
+    this.url = url;
+    this.wsURL = wsURL;
+    this.socket = null;
+    this.onmessage = null;
+    this.onerror = null;
+    this.socketReady = defer();
+  }
+  async input(message) {
+    await this.socketReady.promise;
+    this.socket.send(JSON.stringify({ type: "stdin", message }));
+  }
+  async runCode({ code, language, input, timeout = 8 }) {
+    if (!code)
+      code = await JCode.getCustomCode();
+    const data = {
+      code,
+      language,
+      input,
+      timeout
+    };
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    try {
+      if (!this.socket) {
+        this.socket = await codeXWS(this.wsURL);
+        this.socket.addEventListener("message", (event) => {
+          const data2 = JSON.parse(event.data);
+          if (data2.type === "ready") {
+            this.socketReady.resolve();
+          } else if (data2.type === "stdout") {
+            if (this.onmessage)
+              this.onmessage(data2.message);
+          } else if (data2.type === "stderr") {
+            if (this.onerror)
+              this.onerror(data2.message);
+          }
+        });
+      }
+      if (this.socket)
+        data.wsID = this.socket.clientID;
+      config.body = JSON.stringify(data);
+      const response = await fetch(this.url, config);
+      const result = await response.json();
+      return result;
+    } catch (ex) {
+      if (this.socket)
+        this.socket.close();
+      this.socket = null;
+      console.error(ex);
+    }
+  }
+};
+
 // src/jcode-tools.js
 if (typeof BigInt === "function" && !BigInt.prototype.toJSON) {
   BigInt.prototype.toJSON = function() {
@@ -368,15 +467,6 @@ var logger = (container, host = _console) => {
     }
   };
 };
-var getCustomCode = async () => {
-  let el;
-  do {
-    el = document.querySelector("body>script:last-of-type");
-    if (el && /^text\/.*/.test(el.type))
-      return el.textContent;
-    await new Promise((resolve) => setTimeout(resolve, 50));
-  } while (1);
-};
 function getBlobURL(jsCode) {
   const blob = new Blob([jsCode], { type: "text/javascript" });
   const blobURL = URL.createObjectURL(blob);
@@ -387,6 +477,7 @@ var getURL = async () => {
   return getBlobURL(code);
 };
 export {
+  CodeXClient,
   getCustomCode,
   getURL,
   logger
