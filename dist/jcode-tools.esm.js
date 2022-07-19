@@ -38,8 +38,10 @@ function defer() {
     promise
   };
 }
+var defaultURL = "https://codex.juejin.fun";
+var defaultWsURL = "wss://ws.juejin.fun";
 var CodeXClient = class {
-  constructor(url, wsURL) {
+  constructor(url = defaultURL, wsURL = defaultWsURL) {
     this.url = url;
     this.wsURL = wsURL;
     this.socket = null;
@@ -51,9 +53,19 @@ var CodeXClient = class {
     await this.socketReady.promise;
     this.socket.send(JSON.stringify({ type: "stdin", message }));
   }
-  async runCode({ code, language, input, timeout = 8 }) {
+  async runCode({ code, language, input, timeout = 8 } = {}) {
     if (!code)
-      code = await JCode.getCustomCode();
+      code = await getCustomCode();
+    if (language == null) {
+      const el = document.querySelector("body>script:last-of-type");
+      language = el.type.split("/")[1];
+    }
+    if (language === "node")
+      language = "js";
+    if (language === "python")
+      language = "py";
+    if (language === "golang")
+      language = "go";
     const data = {
       code,
       language,
