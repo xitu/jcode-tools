@@ -8,7 +8,7 @@
 
 ### 1. JCode.getCustomCode
 
-在自定义Script模式下，获得代码文本。
+在[自定义Script模式](https://juejin.cn/post/7118935790192721957)下，获得代码文本。
 
 ```js
 const code = await JCode.getCustomCode(); 
@@ -23,13 +23,81 @@ const logger = JCode.logger(container);
 logger.log('Hello %cworld', 'color:red');
 ```
 
+### 3. JCode.CodeXClient
+
+运行服务端代码。
+
+支持同步和异步模式。
+
+#### 同步模式：[在线demo](https://code.juejin.cn/pen/7122291068397322248)
+
+```html
+<script type="module">
+import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+(async () => {
+  window.console = logger(app);
+  console.log('提交代码，请稍候');
+
+  try {
+    const code = new CodeXClient(); // 默认会从CustomCode中获取
+    const result = await code.runCode({input: ['1 1']});
+    if(result.error) {
+      console.error(result.error);
+    }
+    console.log(result.output);
+  } catch(ex) {
+    console.error(ex);
+  }
+})();
+</script>
+```
+
+#### 异步模式：[在线demo](https://code.juejin.cn/pen/7121977600011927589)
+
+```html
+<script type="module">
+import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+(async () => {
+  window.console = logger(app);
+  console.log('提交代码，请稍候');
+
+  try {
+    const code = new CodeXClient();
+    code.onmessage = (msg) => {
+      console.log(msg);
+    }
+    code.onerror = (msg) => {
+      console.error(msg);
+    }
+
+    const result = await Promise.all(
+      [code.runCode()
+      , code.input('1 1')
+      , code.input('2 3')
+      , code.input('')]);
+    if(result[0].error) {
+      console.error(result[0].error);
+    }
+  } catch(ex) {
+    console.error(ex);
+  }
+})();
+</script>
+```
+
 ## 使用方式
 
-可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools` 以及对应的 css `https://unpkg.com/jcode-tools/dist/jcode-tools.css`;
+1. 可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools` 以及对应的 css `https://unpkg.com/jcode-tools/dist/jcode-tools.css`;
 
 <img src="assets/jcode-tools.jpg" width="480">
 
 <img src="assets/jcode-tools-css.jpg" width="480">
+
+2. 可以通过 ESModule 引入：
+
+```js
+import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+```
 
 ## JCode精选
 

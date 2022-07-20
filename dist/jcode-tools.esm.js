@@ -109,7 +109,7 @@ var CodeXClient = class {
   }
 };
 
-// src/jcode-tools.js
+// src/logger.js
 if (typeof BigInt === "function" && !BigInt.prototype.toJSON) {
   BigInt.prototype.toJSON = function() {
     return `${this}n`;
@@ -479,6 +479,8 @@ var logger = (container, host = _console) => {
     }
   };
 };
+
+// src/jcode-tools.js
 function getBlobURL(jsCode) {
   const blob = new Blob([jsCode], { type: "text/javascript" });
   const blobURL = URL.createObjectURL(blob);
