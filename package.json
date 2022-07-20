@@ -1,8 +1,9 @@
 {
   "name": "jcode-tools",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "",
   "main": "dist/jcode-tools.js",
+  "module": "dist/jcode-tools.esm.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "node build.js",
