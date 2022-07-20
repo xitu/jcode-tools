@@ -228,6 +228,7 @@ export const logger = (container, host = _console) => {
       if(host) host[type](...args);
       args = buildMsg(args);
       const msg = args.map((o) => {
+        if(o == null) return o;
         return o && o.toString ? o.toString() : Object.prototype.toString.call(o);
       }).join(' ');
       log(msg, type);
