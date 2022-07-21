@@ -511,7 +511,7 @@ var Storage = class {
     if (ret.error) {
       return null;
     }
-    return ret.result;
+    return ret.result.value;
   }
   async set(key, value) {
     const res = await fetch(`${kvHost}/doc/append/${key}`, {
@@ -519,7 +519,7 @@ var Storage = class {
       headers: {
         "X-Project-Id": this.bucket
       },
-      body: JSON.stringify(value)
+      body: JSON.stringify({ value })
     });
     const ret = await res.json();
     this.result = ret;
