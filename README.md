@@ -85,6 +85,24 @@ import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tool
 </script>
 ```
 
+### 4. KV存储服务
+
+提供简单的KV存储，可以存储一些数据到服务器。
+
+```js
+import {Storage} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+
+const storage = new Storage();
+const successful = await storage.set('juejin', {id: 'value'});
+if(successful) {
+  const data = await storage.get('juejin');
+  console.log(data); // {id: 'value'}
+  await storage.del('juejin');
+} else {
+  console.error(storage.result.error);
+}
+```
+
 ## 使用方式
 
 1. 可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools` 以及对应的 css `https://unpkg.com/jcode-tools/dist/jcode-tools.css`;

@@ -1,6 +1,7 @@
 import {getCustomCode} from './get-custom-code';
 import {CodeXClient} from './codex-client';
 import {logger} from './logger';
+import {Storage} from './storage';
 
 export {logger};
 export {getCustomCode};
@@ -17,3 +18,5 @@ export const getURL = async () => {
 };
 
 export {CodeXClient};
+
+export {Storage};
