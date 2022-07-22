@@ -33,7 +33,7 @@ logger.log('Hello %cworld', 'color:red');
 
 ```html
 <script type="module">
-import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+import {CodeXClient, logger} from 'https://cdn.jsdelivr.net/npm/jcode-tools/dist/jcode-tools.esm.js';
 (async () => {
   window.console = logger(app);
   console.log('提交代码，请稍候');
@@ -56,7 +56,7 @@ import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tool
 
 ```html
 <script type="module">
-import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+import {CodeXClient, logger} from 'https://cdn.jsdelivr.net/npm/jcode-tools/dist/jcode-tools.esm.js';
 (async () => {
   window.console = logger(app);
   console.log('提交代码，请稍候');
@@ -90,7 +90,7 @@ import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tool
 提供简单的KV存储，可以存储一些数据到服务器。
 
 ```js
-import {Storage} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+import {Storage} from 'https://cdn.jsdelivr.net/npm/jcode-tools/dist/jcode-tools.esm.js';
 
 const storage = new Storage();
 const successful = await storage.set('juejin', {id: 'value'});
@@ -105,7 +105,7 @@ if(successful) {
 
 ## 使用方式
 
-1. 可以直接通过 CDN 引入 `https://unpkg.com/jcode-tools` 以及对应的 css `https://unpkg.com/jcode-tools/dist/jcode-tools.css`;
+1. 可以直接通过 CDN 引入 `https://cdn.jsdelivr.net/npm/jcode-tools` 以及对应的 css `https://cdn.jsdelivr.net/npm/jcode-tools/dist/jcode-tools.css`;
 
 <img src="assets/jcode-tools.jpg" width="480">
 
@@ -114,7 +114,7 @@ if(successful) {
 2. 可以通过 ESModule 引入：
 
 ```js
-import {CodeXClient, logger} from 'https://unpkg.com/jcode-tools/dist/jcode-tools.esm.js';
+import {CodeXClient, logger} from 'https://cdn.jsdelivr.net/npm/jcode-tools/dist/jcode-tools.esm.js';
 ```
 
 ## JCode精选
