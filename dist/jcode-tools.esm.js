@@ -66,6 +66,10 @@ var CodeXClient = class {
       language = "py";
     if (language === "golang")
       language = "go";
+    if (language === "rust")
+      language = "rs";
+    if (language === "csharp")
+      language = "cs";
     const data = {
       code,
       language,

@@ -59,6 +59,8 @@ export class CodeXClient {
     if(language === 'node') language = 'js';
     if(language === 'python') language = 'py';
     if(language === 'golang') language = 'go';
+    if(language === 'rust') language = 'rs';
+    if(language === 'csharp') language = 'cs';
     const data = {
       code,
       language,
