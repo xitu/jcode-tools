@@ -74,6 +74,8 @@ var CodeXClient = class {
       language = "rs";
     if (language === "csharp")
       language = "cs";
+    if (language === "erlang")
+      language = "erl";
     const data = {
       code,
       language,

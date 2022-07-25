@@ -1,6 +1,6 @@
 {
   "name": "jcode-tools",
-  "version": "0.10.4",
+  "version": "0.10.5",
   "description": "",
   "main": "dist/jcode-tools.js",
   "module": "dist/jcode-tools.esm.js",

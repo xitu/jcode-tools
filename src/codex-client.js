@@ -63,6 +63,7 @@ export class CodeXClient {
     if(language === 'ruby') language = 'rb';
     if(language === 'rust') language = 'rs';
     if(language === 'csharp') language = 'cs';
+    if(language === 'erlang') language = 'erl';
     const data = {
       code,
       language,
