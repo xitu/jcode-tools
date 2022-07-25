@@ -62,6 +62,8 @@ var CodeXClient = class {
     }
     if (language === "node")
       language = "js";
+    if (language === "perl")
+      language = "pl";
     if (language === "python")
       language = "py";
     if (language === "golang")

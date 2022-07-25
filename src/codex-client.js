@@ -57,6 +57,7 @@ export class CodeXClient {
       language = el.type.split('/')[1];
     }
     if(language === 'node') language = 'js';
+    if(language === 'perl') language = 'pl';
     if(language === 'python') language = 'py';
     if(language === 'golang') language = 'go';
     if(language === 'ruby') language = 'rb';
