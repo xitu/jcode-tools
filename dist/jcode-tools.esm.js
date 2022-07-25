@@ -66,6 +66,8 @@ var CodeXClient = class {
       language = "py";
     if (language === "golang")
       language = "go";
+    if (language === "ruby")
+      language = "rb";
     if (language === "rust")
       language = "rs";
     if (language === "csharp")
