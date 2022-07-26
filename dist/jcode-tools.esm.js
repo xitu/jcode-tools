@@ -40,6 +40,17 @@ function defer() {
 }
 var defaultURL = "https://codex.juejin.fun";
 var defaultWsURL = "wss://ws.juejin.fun";
+var langMap = {
+  kotlin: "kt",
+  node: "js",
+  perl: "pl",
+  python: "py",
+  golang: "go",
+  ruby: "rb",
+  rust: "rs",
+  csharp: "cs",
+  erlang: "erl"
+};
 var CodeXClient = class {
   constructor(url = defaultURL, wsURL = defaultWsURL) {
     this.url = url;
@@ -60,22 +71,8 @@ var CodeXClient = class {
       const el = document.querySelector("body>script:last-of-type");
       language = el.type.split("/")[1];
     }
-    if (language === "node")
-      language = "js";
-    if (language === "perl")
-      language = "pl";
-    if (language === "python")
-      language = "py";
-    if (language === "golang")
-      language = "go";
-    if (language === "ruby")
-      language = "rb";
-    if (language === "rust")
-      language = "rs";
-    if (language === "csharp")
-      language = "cs";
-    if (language === "erlang")
-      language = "erl";
+    if (langMap[language])
+      language = langMap[language];
     const data = {
       code,
       language,
