@@ -33,7 +33,7 @@ main.max #sidebar nav {
   font-family: Raleway,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   grid-column: 1/2;
   grid-row: 1/-1;
-  background-color: #201e1e;
+  background-color: rgb(20,26,35);
   position: relative;
 }
 
@@ -45,7 +45,7 @@ main.max #sidebar nav {
   grid-row: 1/2;
   transition: all .6s ease-out;
   text-decoration: none;
-  background-color: #201e1e;
+  background-color: rgb(20,26,35);
   border-bottom: solid 1px #000;
 }
 
