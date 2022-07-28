@@ -111,7 +111,7 @@ main.max #sidebar nav {
 .sidebar-menuFolder .content {
   display: flex;
   flex-direction: column;
-  background: #181717;
+  background: rgb(20,26,35);
 }
 
 .sidebar-menuFolder .title {
