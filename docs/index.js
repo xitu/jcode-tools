@@ -16,6 +16,7 @@ async function initDemos(container, collection) {
       collection = demos.collection;
       const titleEl = document.getElementById('title');
       const title = demos.name || '码上掘金-精选';
+      document.title = title;
       titleEl.textContent = title;
       if(demos.url) {
         titleEl.href = demos.url;
