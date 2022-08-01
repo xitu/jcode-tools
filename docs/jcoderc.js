@@ -1,5 +1,6 @@
 export default {
   name: '玩转码上掘金',
+  url: 'https://www.jcode.pub/#/7126827014727663630',
   collection: [
     {
       type: 'folder',
