@@ -197,7 +197,11 @@ function buildTable(tableData, columns) {
 }
 function parseMsg(msg) {
   if (Object.prototype.toString.call(msg) === "[object Object]") {
-    return JSON.stringify(msg);
+    try {
+      return JSON.stringify(msg);
+    } catch (ex) {
+      return msg.toString();
+    }
   }
   return msg;
 }
@@ -225,7 +229,11 @@ function buildMsg(args) {
           return currentMsg.toString();
         }
         if (f === "%o") {
-          return JSON.stringify(currentMsg);
+          try {
+            return JSON.stringify(currentMsg);
+          } catch (ex) {
+            return currentMsg.toString();
+          }
         }
       });
     } else {
