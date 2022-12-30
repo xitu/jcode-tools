@@ -1,4 +1,189 @@
-import './jcode-tools.esm.css.js';
+// src/styles.css
+var styles_default = `.jcode-logger pre {
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+  overflow-x: scroll;
+}
+
+.jcode-logger__warn {
+  background-color: #fefbe7;
+}
+
+.jcode-logger__error {
+  background-color: #fcf1f0;
+}
+
+.jcode-logger__warn::before {
+  content: "!";
+  background: #ecbe41;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  position: relative;
+  left: -0.5rem;
+  transform: scale(0.75);
+}
+
+.jcode-logger__error::before {
+  content: "x";
+  background: #bb2f22;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  position: relative;
+  left: -0.5rem;
+  transform: scale(0.75);
+}
+
+table.jcode-logger__table {
+  width: 100%;
+  border: solid 1px #dfe1e3;
+  border-spacing: 0;
+  margin: 1.2rem 0;
+  display: table!important;
+}
+
+.jcode-logger__table tr th {
+  font-weight: normal;
+  text-align: left;
+  background-color: #f1f3f4;
+  user-select: none;
+}
+
+.jcode-logger__table tr th:hover {
+  font-weight: normal;
+  text-align: left;
+  background-color: #d1d3d4;
+}
+
+.jcode-logger__table tr td,
+.jcode-logger__table tr th {
+  padding: 2px 6px;
+}
+
+.jcode-logger__table th {
+  border: solid 1px #dfe1e3;
+}
+
+.jcode-logger__table td:not(:last-child) {
+  border-right: solid 1px #dfe1e3;
+}
+
+.jcode-logger__table tr:nth-child(2n) {
+  background-color: #f1f3f4;
+}
+
+.jcode-logger .null::after {
+  content: 'null';
+  color: #999;
+}
+
+.jcode-logger .undefined::after {
+  content: 'undefined';
+  color: #999;
+}
+
+.jcode-logger .number,
+.jcode-logger .boolean {
+  color: #16229f;
+}
+
+.jcode-logger .string,
+.jcode-logger .regexp,
+.jcode-logger .symbol {
+  color: #bb2f22;
+}
+
+.jcode-logger .bigint,
+.jcode-logger .array {
+  color: #396b2f;
+}
+
+.jcode-logger__table td:first-child {
+  color: inherit;
+}
+
+.jcode-logger__dir {
+  list-style-type: none;
+  padding: 0;
+}
+
+.jcode-logger__dir li {
+  margin-left: 1rem;
+  font-size: 12px;
+}
+
+.jcode-logger__dir em {
+  font-style: normal;
+  color: #7d237c;
+  margin-right: .5rem;
+}
+
+.jcode-logger__dir em::after {
+  content: ':';
+}
+
+.jcode-logger__dir > div:first-child::before,
+.jcode-logger__group > div:first-child::before {
+  content: ' ';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 8.67px;
+  border-color: transparent;
+  border-left-color: currentColor;
+  transform: translateX(6px);
+}
+
+.jcode-logger__dir {
+  margin: 0;
+}
+
+.jcode-logger__dir > div ~ li {
+  display: none;
+}
+
+.jcode-logger__dir > div.expand::before {
+  transform: rotate(90deg) translateX(6px);
+}
+
+.jcode-logger__dir > div.expand ~ li,
+.jcode-logger__group > div.expand ~ * {
+  display: block;
+}
+
+.jcode-logger__group :not(:first-child) {
+  margin-left: 1rem;
+}
+
+.jcode-logger__group > div {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.jcode-logger__group > div ~ * {
+  display: none;
+}`;
+
+// src/inject-esm.js
+var headEl = document.head || document.getElementsByTagName("head")[0];
+var styleEl = document.createElement("style");
+if (styleEl.styleSheet) {
+  styleEl.styleSheet.cssText = styles_default;
+} else {
+  styleEl.appendChild(document.createTextNode(styles_default));
+}
+headEl.appendChild(styleEl);
+
 // src/get-custom-code.js
 var getCustomCode = async () => {
   let el;
@@ -554,7 +739,7 @@ var Storage = class {
   }
 };
 
-// src/jcode-tools.js
+// src/index.js
 function getBlobURL(jsCode) {
   const blob = new Blob([jsCode], { type: "text/javascript" });
   const blobURL = URL.createObjectURL(blob);
